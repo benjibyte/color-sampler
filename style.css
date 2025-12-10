@@ -1,0 +1,83 @@
+* {
+    padding: 0.25rem;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    --page-color: #2D353B;
+    --page-color2: #343F44;
+    --page-text: #D3C6AA;
+    --page-dark-text: #232A2E;
+    --page-float-blur: #232A2E;
+    --page-button-green: #A7C080;
+    --page-button-unavailable: #425047;
+    --page-button-download: #7FBBB3;
+
+    background-color: var(--page-color);
+    color: var(--page-text);
+}
+
+/* basic display settings */
+
+h1 {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* styled page elements like buttons */
+.pretty-buttons {
+    border: none;
+    background-color: var(--page-button-green); /* Green button for default */
+    color: var(--page-dark-text); /* Readable font color regardless of night theme or day theme */
+    padding: 0.8em;
+    font-size:large;
+    border-radius: 1rem;
+}
+
+#download-palete-image-btn {
+    background-color: var(--page-button-unavailable);
+}
+
+
+
+/* Specific display settings for more integrated web app components*/ 
+.app-items {
+    display: flex;
+    flex-direction: column;
+    
+    button {
+        margin: 1em;
+        box-shadow: 0 0 1.5em var(--page-float-blur);
+    }
+
+    
+
+
+
+    .image-box {
+        border-color: var(--page-text); /* light box border color */
+        border-width: 4px;
+        border-radius: 1rem;
+        background-color: var(--page-color2);
+
+        height: 20em;
+        width: 30em;
+        box-shadow: 0 0 1.5em var(--page-float-blur);
+}}
+
+#downloadable-pallet {
+    display: none; /* This Should be invisible until the conversion script has run */
+    height: 10em; /*shorter than the other image-box*/
+}
+
+
+footer {
+    margin-top: 6em;
+    text-align: center;
+}

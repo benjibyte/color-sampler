@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+    <title>Image to Colors</title>
+</head>
+<body>
+    <header>
+        <h1>Create Color Paletes!</h1>
+    </header>
+
+    <main>
+
+        <!-- all App Items that need to be centered and easilly used by the user -->
+        <div class="app-items">
+
+            <!-- Get the image from the user, upload it into their browser, and then run the conversion script.js -->
+            <form id="uploadImageForm">
+                <label for="imageInput">Choose Image to Sample Colors from</label>
+                <input type="file" id="imageInput" name="sampleImage">    
+                <button class="pretty-buttons" id="upload-image-btn" type="submit">Convert Image to Pallet</button>
+            </form>
+
+            <!-- Put the image here once it is uploaded, and it's upload button-->
+            <div class="image-box" id="uploaded-image">
+
+            </div>
+
+            <!-- Add the new image tag created by the Javascript conversion script -->
+            <button class="pretty-buttons" id="download-palete-image-btn">Download New Color Palate</button>
+
+            <!-- put the display of the new pallete here and activate the download button that is just above this line (on line 28)-->
+            <div class="image-box" id="downloadable-pallet">
+
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Powered by benjibyte</p>
+    </footer>
+    
+
+</body>
+</html>

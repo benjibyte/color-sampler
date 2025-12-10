@@ -1,0 +1,13 @@
+This is an image to color converter script
+perhaps using the ImageJS or Color theif library? It will be hosted on Github pages
+
+Upload an image
+
+Read Image
+
+depending on file width and height, divide up the image
+
+get average colors from each division and create an image for download with those colors listed on it
+
+allow the user to see (display the image/palete) and download it as a jpg, or png.
+
