@@ -4,6 +4,6 @@ I love to paint on Procreate and Krita, but myself and my mother were facing iss
 
 ## The Web app for this software can be found at
 
-<url here>
+https://benjibyte.github.io/color-sampler/
 
 
