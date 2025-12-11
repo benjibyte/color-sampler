@@ -1,3 +1,4 @@
+// The actual web app
 function uploadImage() {
     // allow the user to select an image from their computer and
     // display a smaller version of it on the HTML document as an img tag

@@ -48,18 +48,20 @@ main {
 
 /* Specific display settings for more integrated web app components*/ 
 .app-items {
+
+    /* General settings for all elements */
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
+    max-width: 20em;
+
     button {
         margin: 1em;
         box-shadow: 0 0 1.5em var(--page-float-blur);
     }
 
-    
 
-
-
+    /* Display the uploaded image box */
     .image-box {
         border-color: var(--page-text); /* light box border color */
         border-width: 4px;
@@ -69,9 +71,49 @@ main {
         height: 20em;
         width: 30em;
         box-shadow: 0 0 1.5em var(--page-float-blur);
-}}
 
-#downloadable-pallet {
+}}
+.app-items {
+        /* The File Upoad Button */
+    .file-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 10em;
+        cursor: pointer;
+    }
+    .file-button {
+        background-color: var(--page-button-green);
+        color: var(--page-dark-text);
+        padding: 1em;
+        border-radius: 1rem;
+        margin: 1em;
+    }
+    .file-label {
+        font-size: large;
+        color: var(--page-text);
+        text-align: center;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+}
+
+/* The Convert and Download Buttons that are in a row next to each other */
+.app-items {
+    #row-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        width: 30em;
+    }
+}
+
+
+
+#downloadable-palette {
     display: none; /* This Should be invisible until the conversion script has run */
     height: 10em; /*shorter than the other image-box*/
 }
