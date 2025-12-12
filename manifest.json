@@ -5,5 +5,37 @@
   "display": "standalone",
   "background_color": "#2D353B",
   "theme_color": "#A7C080",
-  "orientation": "portrait-primary"
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "images/icons/color-sampler-icon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/color-sampler-icon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/color-sampler-icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/color-sampler-icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/color-sampler-icon-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icons/color-sampler-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
