@@ -1,58 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="scripts/app.js"></script>
-    <title>Image to Colors</title>
-</head>
-<body>
-    <header>
-        <h1>Create Color Paletes!</h1>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="manifest" href="manifest.json" />
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="images/icons/color-sampler-icon-32.png"
+        />
+        <script src="scripts/app.js"></script>
+        <title>Image to Colors</title>
+    </head>
+    <body>
+        <header>
+            <h1>Create Color Paletes!</h1>
+        </header>
 
-    <main>
+        <main>
+            <!-- all App Items that need to be centered and easilly used by the user -->
+            <div class="app-items">
+                <!-- Get the image from the user, upload it into their browser, and then run the conversion script.js -->
 
-        <!-- all App Items that need to be centered and easilly used by the user -->
-        <div class="app-items">
-            <!-- Get the image from the user, upload it into their browser, and then run the conversion script.js -->
+                <!-- Put the image here once it is uploaded, and it's upload button-->
+                <label class="file-wrapper">
+                    <span class="file-button">Choose File</span>
+                    <span class="file-label" id="fileLabel"
+                        >No File Chosen</span
+                    >
+                    <input type="file" id="fileInput" />
+                </label>
+                <div class="image-box" id="uploaded-image-display"></div>
 
-             <!-- Put the image here once it is uploaded, and it's upload button-->
-            <label class="file-wrapper">
-                <span class="file-button">Choose File</span>
-                <span class="file-label" id="fileLabel">No File Chosen</span>
-                <input type="file" id="fileInput">
-            </label>
-            <div class="image-box" id="uploaded-image-display">
+                <!-- The Two buttons that are in a row, next to each other need a wrapper container -->
+                <div id="row-buttons">
+                    <button
+                        class="pretty-buttons"
+                        id="upload-image-btn"
+                        type="submit"
+                    >
+                        Convert Image
+                    </button>
 
+                    <!-- Add the new image tag created by the Javascript conversion script -->
+                    <button
+                        class="pretty-buttons"
+                        id="download-palette-image-btn"
+                    >
+                        Download Palette
+                    </button>
+                </div>
+
+                <!-- put the display of the new pallete here and activate the download button that is just above this line (on line 28)-->
+                <div class="image-box" id="downloadable-palette"></div>
             </div>
+        </main>
 
+        <footer>
+            <p>Powered by benjibyte</p>
+        </footer>
 
-
-            <!-- The Two buttons that are in a row, next to each other need a wrapper container -->
-            <div id="row-buttons">
-                <button class="pretty-buttons" id="upload-image-btn" type="submit">Convert Image</button>
-            
-                <!-- Add the new image tag created by the Javascript conversion script -->
-                <button class="pretty-buttons" id="download-palette-image-btn">Download Palette</button>
-            </div>
-            
-
-
-            <!-- put the display of the new pallete here and activate the download button that is just above this line (on line 28)-->
-            <div class="image-box" id="downloadable-palette">
-
-            </div>
-        </div>
-    </main>
-    
-    <footer>
-        <p>Powered by benjibyte</p>
-    </footer>
-    
-    <!-- Make sure this is loaded after for the custom button styling for uploading an image! -->
-    <script src="scripts/customButton.js"></script>
-</body>
+        <!-- Make sure this is loaded after for the custom button styling for uploading an image! -->
+        <script src="scripts/customButton.js"></script>
+    </body>
 </html>
