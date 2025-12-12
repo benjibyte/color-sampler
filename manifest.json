@@ -1,7 +1,7 @@
 {
   "name": "Color Sampler",
   "short_name": "ColorSampler",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#2D353B",
   "theme_color": "#A7C080",
