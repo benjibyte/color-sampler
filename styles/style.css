@@ -37,6 +37,7 @@ main {
     color: var(--page-dark-text); /* Readable font color regardless of night theme or day theme */
     padding: 0.8em;
     font-size:large;
+    font-weight: bold;
     border-radius: 1rem;
 }
 
@@ -84,9 +85,11 @@ main {
     .file-button {
         background-color: var(--page-button-green);
         color: var(--page-dark-text);
+        font-weight: bold;
         padding: 1em;
         border-radius: 1rem;
         margin: 1em;
+        text-align: center;
     }
     .file-label {
         font-size: large;
@@ -95,14 +98,15 @@ main {
     }
 
     input[type=input] {
-        opacity: 0;
+        /* opacity: 0;
         clip: rect(0 0 0 0);
         clip-path: inset(50%);
         height: 1px;
         overflow: hidden;
         position: absolute;
         white-space: nowrap;
-        width: 1px;
+        width: 1px; */
+        display: none;
     }
 
 }
@@ -120,6 +124,16 @@ main {
 }
 
 
+/* The User Selected Image Display Area */
+#uploaded-image-display {
+    display: flex;
+    justify-content: center;
+   
+}
+
+#current-displayed-image {
+    max-width: 26em;
+}
 
 #downloadable-palette {
     display: none; /* This Should be invisible until the conversion script has run */

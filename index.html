@@ -10,7 +10,7 @@
             type="image/x-icon"
             href="images/icons/color-sampler-icon-32.png"
         />
-        <script src="scripts/app.js"></script>
+        
         <title>Image to Colors</title>
     </head>
     <body>
@@ -26,22 +26,17 @@
                 <!-- Put the image here once it is uploaded, and it's upload button-->
                 <label class="file-wrapper">
                     <span class="file-button">Choose File</span>
-                    <span class="file-label" id="fileLabel"
-                        >No File Chosen</span
-                    >
+                    <span class="file-label" id="fileLabel">No File Chosen</span>
                     <input type="file" id="fileInput" accept="image/jpg, image/png" />
                 </label>
-                <div class="image-box" id="uploaded-image-display"></div>
+                <div class="image-box" id="uploaded-image-display">
+
+
+                </div>
 
                 <!-- The Two buttons that are in a row, next to each other need a wrapper container -->
                 <div id="row-buttons">
-                    <button
-                        class="pretty-buttons"
-                        id="upload-image-btn"
-                        type="submit"
-                    >
-                        Convert Image
-                    </button>
+                    <button class="pretty-buttons" id="upload-image-btn" type="submit">Convert Image</button>
 
                     <!-- Add the new image tag created by the Javascript conversion script -->
                     <button
@@ -61,6 +56,7 @@
         </footer>
 
         <!-- Make sure this is loaded after for the custom button styling for uploading an image! -->
+         <script src="scripts/app.js"></script>
         <script src="scripts/customButton.js"></script>
     </body>
 </html>

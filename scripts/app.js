@@ -1,34 +1,71 @@
 // The actual web app
 const inputFile = document.getElementById("fileInput");
-inputFile.addEventListener("change", displayImage);
+const preview = document.getElementById("uploaded-image-display");
 
-function securityChecks() {
-  const file = this.file
+
+inputFile.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  securityChecks(file);
+  displayImage(file);
+
+
+
+});
+
+
+
+
+
+function securityChecks(file) {
+  
   // Ensure file exists and perform security checks.
   if (file) { 
     console.log("File Detected. Checking Format...");
 
-    if (!file.type.startsWith("image/")) { // image format
+    if (file.type.startsWith("image/png")) { // image format needs to be .png
       console.log("File meets file format requirements. Checking Size...");
 
       const fileSizeMB = file.size / (1024 * 1024); // size in MB
       if (fileSizeMB <= 200) {
         console.log("File Size meets requirements.");
+
+        // Put further Security Checks here in the future...
+
+        console.log("All Checks passed! Returning File...")
+        return file;
+
       } else {
         console.log("File size is too big!");
-        alert("Uploaded File size exceeds the file size limits!");
+        alert("Uploaded File size exceeds the file size limits! Reload the app and try again.");
+        return NaN;
       }
     }
 
   } else {
     console.log("Selected File is not readable to the app.");
+    return NaN;
   }
 }
 
-function displayImage() {
+
+
+function displayImage(file) {
   // allow the user to select an image from their computer and
   // display a smaller version of it on the HTML document as an img tag
   // with an ID of "uploaded-image"
+  const displayImage = document.createElement("img");
+  displayImage.classList.add("obj");
+  displayImage.id = "current-displayed-image";
+  displayImage.file = file;
+  preview.appendChild(displayImage);
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    displayImage.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+
+
 }
 
 function divideImage() {
