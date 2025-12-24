@@ -78,6 +78,7 @@ function divideImage(uploadedImage) {
   // return an array of divided json objects containing the divided colors in number format (rgb or HEX color codes)
   if (fileSelected == true) {
     // Use the uploadedImage file like a spritesheet in CanvasJS. (uploadedImage should be a Canvas Image object)
+    
   }
 }
 
