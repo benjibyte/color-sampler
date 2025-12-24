@@ -14,10 +14,11 @@ inputFile.addEventListener("change", (event) => {
 });
 
 // The image on CanvasJS to divide | Divide button to prepare for color selection
-const buttonDivisor = document.getElementById("convert-img-btn");
-let imageToConvert = document.getElementById("current-displayed-img"); 
+imageToDivide = document.getElementById("current-displayed-img");
+document.getElementById("convert-img-btn").onclick = divideImage(imageToDivide);
+
 // Get the same image that is displayed to the User
-buttonDivisor.onclick = divideImage(imageToConvert);
+
 
 function securityChecks(file) {
   
@@ -73,22 +74,29 @@ function divideImage(uploadedImage) {
   // Divide the image into little quadrants of color values from each quadrant (perhaps store in json?)
   // return an array of divided json objects containing the divided colors in number format (rgb or HEX color codes)
   if (fileSelected == true) {
+    console.log("User uploaded File does exist and is accesible by the Dividing function");
     // Use the uploadedImage file like a spritesheet in CanvasJS. (uploadedImage should be a Canvas Image object)
     width = uploadedImage.width
+    console.log("width has been recieved");
     height = uploadedImage.height
+    console.log("height has been recieved");
 
     // I want 30 colors so ten by the width, and 3 by the hieght, then round down to the best int.
+    console.log("Getting the width Divisor");
     widthDivisor = Math.floor(width / 10);
+    console.log("Getting the height Divisor");
     heightDivisor = Math.floor(height / 3);
     // Get the divisible cordinates
-
+    
+    console.log("Detecting the Canvas element");
     // Display the Image
     const canvas = document.getElementById("conversionArea");
+    console.log("Canvas element is detected");
     const ctx = canvas.getContext("2d");
+    console.log("Canvas context is selected");
 
-    uploadedImage.addEventListener("load", (e) => {
-      ctx.drawImage(e, 10, 10, width, widthDivisor, heightDivisor);
-    });
+    ctx.drawImage(uploadedImage, 10, 10, width, widthDivisor, heightDivisor);
+    
   }
 }
 function getColors() {
