@@ -19,8 +19,6 @@ let imageToConvert = document.getElementById("current-displayed-img");
 // Get the same image that is displayed to the User
 buttonDivisor.onclick = divideImage(imageToConvert);
 
-
-
 function securityChecks(file) {
   
   // Ensure file exists and perform security checks.
@@ -51,9 +49,6 @@ function securityChecks(file) {
     return NaN;
   }
 }
-
-
-
 function displayImage(file) {
   // allow the user to select an image from their computer and
   // display a smaller version of it on the HTML document as an img tag
@@ -72,7 +67,6 @@ function displayImage(file) {
 
 
 }
-
 function divideImage(uploadedImage) {
   // take the new image tag with the id of "uploaded-image" and get it's
   // height, width, and a number it is divisible by.
@@ -86,10 +80,7 @@ function divideImage(uploadedImage) {
     // I want 30 colors so ten by the width, and 3 by the hieght, then round down to the best int.
     widthDivisor = Math.floor(width / 10);
     heightDivisor = Math.floor(height / 3);
-
-
     // Get the divisible cordinates
-
 
     // Display the Image
     const canvas = document.getElementById("conversionArea");
@@ -98,10 +89,8 @@ function divideImage(uploadedImage) {
     uploadedImage.addEventListener("load", (e) => {
       ctx.drawImage(e, 10, 10, width, widthDivisor, heightDivisor);
     });
-
   }
 }
-
 function getColors() {
   // Take the array of divided json colors, and get the average color of each quadrant.
   // If there are 2 or more colors within a certain range of similarness, then either merge or delete the new one
@@ -110,7 +99,6 @@ function getColors() {
   // return state: place a new image tag that the User can see, containing all the average colors. This is the pallet to download.
   // .... Also, turn the download button's CSS bright blue and enable the button to be clicked.
 }
-
 function downloadPalete() {
   // Get the new pallete img tag and download it to the computer with the Download palete button is clicked. as a .jpg file.
   // Send an Alert() that it was a succesful download!
