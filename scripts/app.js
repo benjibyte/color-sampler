@@ -3,15 +3,22 @@ const inputFile = document.getElementById("fileInput");
 const preview = document.getElementById("uploaded-image-display");
 let fileSelected = false;
 let image = new Image();
-let uploadedImage = "";
+let selectedImage = "";
 
 inputFile.addEventListener("change", (event) => {
   const file = event.target.files[0];
-  securityChecks(file);
-  displayImage(file);
-  fileSelected = true;
-  image.src = file;
-  uploadedImage = image;
+  if (file && securityChecks(file)) {
+    displayImage(file);
+    fileSelected = true;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      image.src = e.target.result;
+      selectedImage = image;
+    };
+    reader.readAsDataURL(file);
+  }
+  
   
 });
 
@@ -75,7 +82,7 @@ function divideImage() {
   // height, width, and a number it is divisible by.
   // Divide the image into little quadrants of color values from each quadrant (perhaps store in json?)
   // return an array of divided json objects containing the divided colors in number format (rgb or HEX color codes)
-  let uploadedImage = document.getElementById("current-displayed-image");
+  
   if (fileSelected == true) {
     console.log("User uploaded File does exist and is accesible by the Dividing function");
     // Use the uploadedImage file like a spritesheet in CanvasJS. (uploadedImage should be a Canvas Image object)
