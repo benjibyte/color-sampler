@@ -30,21 +30,23 @@
                     <input type="file" id="fileInput" accept="image/jpg, image/png" />
                 </label>
                 <div class="image-box" id="uploaded-image-display">
-
-
+                    <!-- The user's image goes here -->
                 </div>
+
+
+
 
                 <!-- The Two buttons that are in a row, next to each other need a wrapper container -->
-                <div id="row-buttons">
-                    <button class="pretty-buttons" id="upload-image-btn" type="submit">Convert Image</button>
+                
+                <button class="pretty-buttons" id="convert-image-btn" type="submit">Convert Image</button>
+                <!-- Add the new image tag created by the Javascript conversion script -->
 
-                    <!-- Add the new image tag created by the Javascript conversion script -->
-                    <button
-                        class="pretty-buttons"
-                        id="download-palette-image-btn">
-                        Download Palette
-                    </button>
-                </div>
+                <canvas id="conversionArea">
+
+                </canvas>
+
+                <button class="pretty-buttons" id="download-palette-image-btn">Download Palette </button>
+                
 
                 <!-- put the display of the new pallete here and activate the download button that is just above this line (on line 28)-->
                 <div class="image-box" id="downloadable-palette"></div>

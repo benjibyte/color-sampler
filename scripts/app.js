@@ -10,12 +10,14 @@ inputFile.addEventListener("change", (event) => {
   displayImage(file);
   fileSelected = true;
   image.src = file;
-  image.onload = divideImage(file);
+  
 });
 
-// The image on CanvasJS to divide
-
-
+// The image on CanvasJS to divide | Divide button to prepare for color selection
+const buttonDivisor = document.getElementById("convert-img-btn");
+let imageToConvert = document.getElementById("current-displayed-img"); 
+// Get the same image that is displayed to the User
+buttonDivisor.onclick = divideImage(imageToConvert);
 
 
 
@@ -78,7 +80,25 @@ function divideImage(uploadedImage) {
   // return an array of divided json objects containing the divided colors in number format (rgb or HEX color codes)
   if (fileSelected == true) {
     // Use the uploadedImage file like a spritesheet in CanvasJS. (uploadedImage should be a Canvas Image object)
-    
+    width = uploadedImage.width
+    height = uploadedImage.height
+
+    // I want 30 colors so ten by the width, and 3 by the hieght, then round down to the best int.
+    widthDivisor = Math.floor(width / 10);
+    heightDivisor = Math.floor(height / 3);
+
+
+    // Get the divisible cordinates
+
+
+    // Display the Image
+    const canvas = document.getElementById("conversionArea");
+    const ctx = canvas.getContext("2d");
+
+    uploadedImage.addEventListener("load", (e) => {
+      ctx.drawImage(e, 10, 10, width, widthDivisor, heightDivisor);
+    });
+
   }
 }
 
