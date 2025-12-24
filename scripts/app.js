@@ -66,16 +66,15 @@ function displayImage(file) {
   const displayImage = document.createElement("img");
   displayImage.classList.add("obj");
   displayImage.id = "current-displayed-image";
-  displayImage.file = file;
+  preview.innerHTML = "" // Clear old images
   preview.appendChild(displayImage);
 
   const reader = new FileReader();
   reader.onload = (e) => {
     displayImage.src = e.target.result;
+    window.uploadedImage = displayImage;
   };
   reader.readAsDataURL(file);
-
-
 }
 function divideImage() {
   // take the new image tag with the id of "uploaded-image" and get it's
@@ -84,29 +83,23 @@ function divideImage() {
   // return an array of divided json objects containing the divided colors in number format (rgb or HEX color codes)
   
   if (fileSelected == true) {
-    console.log("User uploaded File does exist and is accesible by the Dividing function");
-    // Use the uploadedImage file like a spritesheet in CanvasJS. (uploadedImage should be a Canvas Image object)
-    width = uploadedImage.width
-    console.log("width has been recieved");
-    height = uploadedImage.height
-    console.log("height has been recieved");
+    const uploadedImage = document.getElementById("current-displayed-image");
+    if (uploadedImage) {
+      const width = uploadedImage.width;
+      const height = uploadedImage.height;
 
-    // I want 30 colors so ten by the width, and 3 by the hieght, then round down to the best int.
-    console.log("Getting the width Divisor");
-    widthDivisor = Math.floor(width / 10);
-    console.log("Getting the height Divisor");
-    heightDivisor = Math.floor(height / 3);
-    // Get the divisible cordinates
-    
-    console.log("Detecting the Canvas element");
-    // Display the Image
-    const canvas = document.getElementById("conversionArea");
-    console.log("Canvas element is detected");
-    const ctx = canvas.getContext("2d");
-    console.log("Canvas context is selected");
+      const widthDivisor = Math.floor(width / 10);
+      const heightDivisor = Math.floor(height / 3);
 
-    ctx.drawImage(uploadedImage, 10, 10, width, widthDivisor, heightDivisor);
-    
+      const canvas = document.getElementById("conversionArea");
+      const ctx = canvas.getContext("2d");
+
+      ctx.drawImage(uploadedImage, 0,0, width, height);
+      console.log("Image drawn on canvas")
+    }
+    else {
+      console.log("Image not found.")
+    }
   }
 }
 function getColors() {
