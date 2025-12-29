@@ -15,7 +15,7 @@ inputFile.addEventListener("change", (event) => {
     colorsArray = []
     for (swatch in swatchesArray) {
       const colorRGB = getColors(swatch);
-      colorsArray.add(colorRGB);
+      colorsArray.push(colorRGB);
     }
 
     // now we create an image and draw the colors onto it
@@ -119,7 +119,7 @@ function divideImage() {
           const imageAnchorY = heightDivisor * Ymultiplier;
 
            swatch = createImageBitmap(uploadedImage, imageAnchorX, imageAnchorY, widthDivisor, heightDivisor);
-           swatchesArray.add(swatch);
+           swatchesArray.push(swatch);
         }
       }
 
@@ -128,19 +128,6 @@ function divideImage() {
   return swatchesArray;
 
 }
-function getColors() {
-  // Take the array of divided json colors, and get the average color of each quadrant.
-  // If there are 2 or more colors within a certain range of similarness, then either merge or delete the new one
-  // Then create a new img tag and draw
-  // each color in little boxes next to each other on the new tag until all the average colors have been taken.
-  // return state: place a new image tag that the User can see, containing all the average colors. This is the pallet to download.
-  // .... Also, turn the download button's CSS bright blue and enable the button to be clicked.
-}
-function downloadPalete() {
-  // Get the new pallete img tag and download it to the computer with the Download palete button is clicked. as a .jpg file.
-  // Send an Alert() that it was a succesful download!
-}
-
 }
 function getColors(file) {
   const colorThief = new ColorThief();
