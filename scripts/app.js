@@ -3,25 +3,13 @@ const inputFile = document.getElementById("fileInput");
 const preview = document.getElementById("uploaded-image-display");
 let fileSelected = false;
 let image = new Image();
-let downloadableImage = new Image();
-
+let selectedImage = "";
 
 inputFile.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file && securityChecks(file)) {
     displayImage(file);
     fileSelected = true;
-    swatchesArray = divideImage(file);
-    colorsArray = []
-    for (swatch in swatchesArray) {
-      const colorRGB = getColors(swatch);
-      colorsArray.push(colorRGB);
-    }
-
-    // now we create an image and draw the colors onto it
-    const finishedPallet = createPallet(colorsArray);
-    downloadableImage.src = finishedPallet;
-
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -93,10 +81,7 @@ function divideImage() {
   // height, width, and a number it is divisible by.
   // Divide the image into little quadrants of color values from each quadrant (perhaps store in json?)
   // return an array of divided json objects containing the divided colors in number format (rgb or HEX color codes)
-  swatchesArray = [];
   
-
-
   if (fileSelected == true) {
     const uploadedImage = document.getElementById("current-displayed-image");
     if (uploadedImage) {
@@ -106,70 +91,45 @@ function divideImage() {
       const widthDivisor = Math.floor(width / 10);
       const heightDivisor = Math.floor(height / 3);
 
-      // For loop run 30 times, and get 30 average colors from 30 sample crops of the uploadedImage
-      const rows = [0, 1, 2];
-      const cols = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-      for (rowIndex in rows) {
-        for (colIndex in cols) {
-          // Get the current position of the crop
-          const Xmultiplier = (colIndex < 9) ? (colIndex + 1) : colIndex;
-          const Ymultiplier = (rowIndex < 3) ? (rowIndex + 1) : rowIndex;
+      const canvas = document.getElementById("conversionArea");
+      const ctx = canvas.getContext("2d");
 
-          const imageAnchorX = widthDivisor * Xmultiplier; // widthDivisor * 2...3...4 and so on.
-          const imageAnchorY = heightDivisor * Ymultiplier;
 
-           swatch = createImageBitmap(uploadedImage, imageAnchorX, imageAnchorY, widthDivisor, heightDivisor);
-           swatchesArray.push(swatch);
-        }
-      }
+      let imgRange = width / widthDivisor;
+      // get the individual pixel spots in the image that I need to loop
+      // through an array of it's cordinates
+      // to get the sample pieces. I need 30 of them.
+      
+
+      // I decided to get rid of the For loop since the amount of swatches will never change,
+      // so that I can just be very constant O(1)? with this.
+
+      const column1SourceX = 0; /
+      const column2SourceX = widthDivisor;
+      const column3SourceX = widthDivisor * 2;
+      const column4SourceX = widthDivisor * 3;
+      const column5SourceX = widthDivisor * 4;
+      const column6SourceX = widthDivisor * 5;
+      const column7SourceX = widthDivisor * 6;
+      const column8SourceX = widthDivisor * 7;
+      const column9SourceX = widthDivisor * 8;
+      const column10SourceX = widthDivisor * 9;
+
+      const row1SourceY = 0;
+      const row2SourceY = heightDivisor;
+      const row3SourceY = heightDivisor * 2;
 
   }
-
-  return swatchesArray;
-
 }
+function getColors() {
+  // Take the array of divided json colors, and get the average color of each quadrant.
+  // If there are 2 or more colors within a certain range of similarness, then either merge or delete the new one
+  // Then create a new img tag and draw
+  // each color in little boxes next to each other on the new tag until all the average colors have been taken.
+  // return state: place a new image tag that the User can see, containing all the average colors. This is the pallet to download.
+  // .... Also, turn the download button's CSS bright blue and enable the button to be clicked.
 }
-function getColors(swatch) {
-  const canvas = document.createEllement("canvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = 1;
-  canvas.height = 1;
-
-  ctx.drawImage(swatch, 0, 0, 1, 1);
-
-  const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
-  const hexColor = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-  return hexColor;
+function downloadPalete() {
+  // Get the new pallete img tag and download it to the computer with the Download palete button is clicked. as a .jpg file.
+  // Send an Alert() that it was a succesful download!
 }
-function createPallet(colorsArray) {
-  const canvas = document.getElementById("downloadable-pallet");
-  const ctx = canvas.getContext('2d');
-  for (let i = 0; i < 30; i++) {
-    const color = colorsArray[i]
-    ctx.fillStyle = color;
-    ctx.fillRect(i * 1, 0, colorWidth, colorHeight);
-  }
-  const convertPallet = canvas.toDataURL("image/png");
-  const imgElement = document.getElementById("finished-pallet");
-  imgElement.src = convertPallet;
-
-  return convertPallet;
-
-}
-
-const downloadButton = document.getElementById("download-palette-image-btn");
-
-downloadButton.addEventListener("click", () => {
-
-  const pallet = downloadableImage;
-
-  const link = document.createElement("a");
-  link.href = pallet;
-  link.download = "converted-pallet.png";
-
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-
-});
