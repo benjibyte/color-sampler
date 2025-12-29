@@ -3,7 +3,8 @@ const inputFile = document.getElementById("fileInput");
 const preview = document.getElementById("uploaded-image-display");
 let fileSelected = false;
 let image = new Image();
-let selectedImage = "";
+let downloadableImage = new Image();
+
 
 inputFile.addEventListener("change", (event) => {
   const file = event.target.files[0];
@@ -19,7 +20,7 @@ inputFile.addEventListener("change", (event) => {
 
     // now we create an image and draw the colors onto it
     const finishedPallet = createPallet(colorsArray);
-    
+    downloadableImage.src = finishedPallet;
 
 
     const reader = new FileReader();
@@ -161,6 +162,19 @@ function createPallet(colorsArray) {
   return convertPallet;
 
 }
-function downloadPallet(pallet) {
-  
-}
+
+const downloadButton = document.getElementById("download-palette-image-btn");
+
+downloadButton.addEventListener("click", () => {
+
+  const pallet = downloadableImage;
+
+  const link = document.createElement("a");
+  link.href = pallet;
+  link.download = "converted-pallet.png";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+});
