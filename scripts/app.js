@@ -98,10 +98,11 @@ function divideImage() {
       // Replace lines 99 and 100, with a for loop that runs through the image, and instead of drawing images, it 
       // grabs the selections and then calls the get-color function on each section.
       ctx.drawImage(uploadedImage, 0,0, width, height);
-      console.log("Image drawn on canvas")
+      console.log("Image drawn on canvas");
+      
     }
     else {
-      console.log("Image not found.")
+      console.log("Image not found.");
     }
   }
 }
