@@ -92,7 +92,20 @@ function divideImage() {
       const heightDivisor = Math.floor(height / 3);
 
       // For loop run 30 times, and get 30 average colors from 30 sample crops of the uploadedImage
-      
+      const rows = [0, 1, 2];
+      const cols = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      for (rowIndex in rows) {
+        for (colIndex in cols) {
+          // Get the current position of the crop
+          const Xmultiplier = (colIndex < 9) ? (colIndex + 1) : colIndex;
+          const Ymultiplier = (rowIndex < 3) ? (rowIndex + 1) : rowIndex;
+
+          const imageAnchorX = widthDivisor * Xmultiplier; // widthDivisor * 2...3...4 and so on.
+          const imageAnchorY = heightDivisor * Ymultiplier;
+
+           const swatch = createImageBitmap(uploadedImage, imageAnchorX, imageAnchorY, widthDivisor, heightDivisor);
+        }
+      }
 
   }
 }
