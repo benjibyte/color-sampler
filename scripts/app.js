@@ -10,6 +10,14 @@ inputFile.addEventListener("change", (event) => {
   if (file && securityChecks(file)) {
     displayImage(file);
     fileSelected = true;
+    swatchesArray = divideImage(file);
+    colorsArray = []
+    for (swatch in swatchesArray) {
+      const colorRGB = getColors(swatch);
+      colorsArray.add(colorRGB);
+    }
+    // now we create an image and draw the colors onto it
+
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -81,7 +89,10 @@ function divideImage() {
   // height, width, and a number it is divisible by.
   // Divide the image into little quadrants of color values from each quadrant (perhaps store in json?)
   // return an array of divided json objects containing the divided colors in number format (rgb or HEX color codes)
+  swatchesArray = [];
   
+
+
   if (fileSelected == true) {
     const uploadedImage = document.getElementById("current-displayed-image");
     if (uploadedImage) {
@@ -103,11 +114,15 @@ function divideImage() {
           const imageAnchorX = widthDivisor * Xmultiplier; // widthDivisor * 2...3...4 and so on.
           const imageAnchorY = heightDivisor * Ymultiplier;
 
-           const swatch = createImageBitmap(uploadedImage, imageAnchorX, imageAnchorY, widthDivisor, heightDivisor);
+           swatch = createImageBitmap(uploadedImage, imageAnchorX, imageAnchorY, widthDivisor, heightDivisor);
+           swatchesArray.add(swatch);
         }
       }
 
   }
+
+  return swatchesArray;
+
 }
 function getColors() {
   // Take the array of divided json colors, and get the average color of each quadrant.
@@ -122,4 +137,9 @@ function downloadPalete() {
   // Send an Alert() that it was a succesful download!
 }
 
+}
+function getColors(file) {
+  const colorThief = new ColorThief();
+  const dominantRGBcolor = colorThief.getColor(file);
+  return dominantRGBcolor;
 }
