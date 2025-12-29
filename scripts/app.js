@@ -161,3 +161,6 @@ function createPallet(colorsArray) {
   return convertPallet;
 
 }
+function downloadPallet(pallet) {
+  
+}
