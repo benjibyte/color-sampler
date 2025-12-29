@@ -16,7 +16,10 @@ inputFile.addEventListener("change", (event) => {
       const colorRGB = getColors(swatch);
       colorsArray.add(colorRGB);
     }
+
     // now we create an image and draw the colors onto it
+    const finishedPallet = createPallet(colorsArray);
+    
 
 
     const reader = new FileReader();
@@ -142,4 +145,19 @@ function getColors(file) {
   const colorThief = new ColorThief();
   const dominantRGBcolor = colorThief.getColor(file);
   return dominantRGBcolor;
+}
+function createPallet(colorsArray) {
+  const canvas = document.getElementById("downloadable-pallet");
+  const ctx = canvas.getContext('2d');
+  for (let i = 0; i < 30; i++) {
+    const color = colorsArray[i]
+    ctx.fillStyle = color;
+    ctx.fillRect(i * 1, 0, colorWidth, colorHeight);
+  }
+  const convertPallet = canvas.toDataURL("image/png");
+  const imgElement = document.getElementById("finished-pallet");
+  imgElement.src = convertPallet;
+
+  return convertPallet;
+
 }
