@@ -91,6 +91,8 @@ function divideImage() {
       const widthDivisor = Math.floor(width / 10);
       const heightDivisor = Math.floor(height / 3);
 
+      // For loop run 30 times, and get 30 average colors from 30 sample crops of the uploadedImage
+      
 
   }
 }
