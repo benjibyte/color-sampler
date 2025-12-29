@@ -104,7 +104,7 @@ function divideImage() {
       // I decided to get rid of the For loop since the amount of swatches will never change,
       // so that I can just be very constant O(1)? with this.
 
-      const column1SourceX = 0; // the "sx" of the Canvas Drak image thing...
+      const column1SourceX = 0; /
       const column2SourceX = widthDivisor;
       const column3SourceX = widthDivisor * 2;
       const column4SourceX = widthDivisor * 3;
@@ -119,7 +119,6 @@ function divideImage() {
       const row2SourceY = heightDivisor;
       const row3SourceY = heightDivisor * 2;
 
- 
   }
 }
 function getColors() {
