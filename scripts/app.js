@@ -108,3 +108,5 @@ function downloadPalete() {
   // Get the new pallete img tag and download it to the computer with the Download palete button is clicked. as a .jpg file.
   // Send an Alert() that it was a succesful download!
 }
+
+}
