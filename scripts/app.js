@@ -129,10 +129,18 @@ function divideImage() {
 
 }
 }
-function getColors(file) {
-  const colorThief = new ColorThief();
-  const dominantRGBcolor = colorThief.getColor(file);
-  return dominantRGBcolor;
+function getColors(swatch) {
+  const canvas = document.createEllement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = 1;
+  canvas.height = 1;
+
+  ctx.drawImage(swatch, 0, 0, 1, 1);
+
+  const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
+  const hexColor = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  return hexColor;
 }
 function createPallet(colorsArray) {
   const canvas = document.getElementById("downloadable-pallet");
