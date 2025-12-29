@@ -95,11 +95,31 @@ function divideImage() {
       const ctx = canvas.getContext("2d");
 
 
-      // Replace lines 99 and 100, with a for loop that runs through the image, and instead of drawing images, it 
-      // grabs the selections and then calls the get-color function on each section.
-      ctx.drawImage(uploadedImage, 0,0, width, height);
-      console.log("Image drawn on canvas");
+      let imgRange = width / widthDivisor;
+      // get the individual pixel spots in the image that I need to loop
+      // through an array of it's cordinates
+      // to get the sample pieces. I need 30 of them.
       
+
+      // I decided to get rid of the For loop since the amount of swatches will never change,
+      // so that I can just be very constant O(1)? with this.
+
+      const swatch1TopLeft = 0; // the "sx" of the Canvas Drak image thing...
+      const swatch2Anchor = widthDivisor;
+      const swatch3Anchor = widthDivisor * 2;
+      const swatch4Anchor = widthDivisor * 3;
+      const swatch5Anchor = widthDivisor * 4;
+      const swatch6Anchor = widthDivisor * 5;
+      const swatch7Anchor = widthDivisor * 6;
+      const swatch8Anchor = widthDivisor * 7;
+      const swatch9Anchor = widthDivisor * 8;
+      const swatch10Anchor = widthDivisor * 9;
+      
+
+
+
+
+
     }
     else {
       console.log("Image not found.");
