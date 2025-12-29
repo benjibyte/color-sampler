@@ -91,33 +91,6 @@ function divideImage() {
       const widthDivisor = Math.floor(width / 10);
       const heightDivisor = Math.floor(height / 3);
 
-      const canvas = document.getElementById("conversionArea");
-      const ctx = canvas.getContext("2d");
-
-
-      let imgRange = width / widthDivisor;
-      // get the individual pixel spots in the image that I need to loop
-      // through an array of it's cordinates
-      // to get the sample pieces. I need 30 of them.
-      
-
-      // I decided to get rid of the For loop since the amount of swatches will never change,
-      // so that I can just be very constant O(1)? with this.
-
-      const column1SourceX = 0; /
-      const column2SourceX = widthDivisor;
-      const column3SourceX = widthDivisor * 2;
-      const column4SourceX = widthDivisor * 3;
-      const column5SourceX = widthDivisor * 4;
-      const column6SourceX = widthDivisor * 5;
-      const column7SourceX = widthDivisor * 6;
-      const column8SourceX = widthDivisor * 7;
-      const column9SourceX = widthDivisor * 8;
-      const column10SourceX = widthDivisor * 9;
-
-      const row1SourceY = 0;
-      const row2SourceY = heightDivisor;
-      const row3SourceY = heightDivisor * 2;
 
   }
 }
