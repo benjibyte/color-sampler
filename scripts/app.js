@@ -8,19 +8,54 @@ let selectedImage = "";
 inputFile.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file && securityChecks(file)) {
-    displayImage(file);
+    displayImage(file); // Display the image
     fileSelected = true;
-
     const reader = new FileReader();
     reader.onload = (e) => {
       image.src = e.target.result;
       selectedImage = image;
     };
     reader.readAsDataURL(file);
-  }
+  
+  // Import uploaded image into Canvas as conversionImage, and get the colors
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  const conversionImage = document.getElementById("current-displayed-image");
+
+  conversionImage.onload = () => {
+    canvas.width = conversionImage.width;
+    canvas.height = conversionImage.height;
+    context.drawImage(conversionImage, 0, 0, conversionImage.width, conversionImage.height);
+    const imageData = context.getImageData(0, 0);
+    const imageDataRGB = imageData.data;
+
+    // Get the jump increments
+    const jumpX = Math.floor(canvas.width / 10);
+    const jumpY = Math.floor(canvas.height / 3);
+
+    for (let y = 0; y < canvas.height; y += jumpY) {
+      for (let x = 0; x < canvas.width; x += jumpX) {
+        const index = (y * canvas.width + x) * 4; // Jump in L's like a chess knight through this array,
+                                                  // Each 4 numbers, is a new color
+        const r = imageData[index];
+        const g = imageData[index + 1];
+        const b = imageData[index + 2];
+
+        // convert to HEX codes
+
+      
+
+      }
+    }
+
+ 
+  };
+  
+    
   
   
-});
+  
+  }});
 
 // The image on CanvasJS to divide | Divide button to prepare for color selection
 
@@ -76,49 +111,11 @@ function displayImage(file) {
   };
   reader.readAsDataURL(file);
 }
-function divideImage() {
-  // take the new image tag with the id of "uploaded-image" and get it's
-  // height, width, and a number it is divisible by.
-  // Divide the image into little quadrants of color values from each quadrant (perhaps store in json?)
-  // return an array of divided json objects containing the divided colors in number format (rgb or HEX color codes)
-  
-  if (fileSelected == true) {
-    const uploadedImage = document.getElementById("current-displayed-image");
-    if (uploadedImage) {
-      const width = uploadedImage.width;
-      const height = uploadedImage.height;
 
-      const widthDivisor = Math.floor(width / 10);
-      const heightDivisor = Math.floor(height / 3);
+function rgbToHex(r, g, b) {
+  const r = r.toString(16).padStart(2, '0');
+  const g = g.toString(16).padStart(2, '0');
+  const b = b.toString(16).padStart(2, '0');
 
-      const canvas = document.getElementById("conversionArea");
-      const ctx = canvas.getContext("2d");
-
-
-      let imgRange = width / widthDivisor;
-      // get the individual pixel spots in the image that I need to loop
-      // through an array of it's cordinates
-      // to get the sample pieces. I need 30 of them.
-      
-
-      // I decided to get rid of the For loop since the amount of swatches will never change,
-      // so that I can just be very constant O(1)? with this.
-
-      const column1SourceX = 0; 
-      const column2SourceX = widthDivisor;
-      const column3SourceX = widthDivisor * 2;
-      const column4SourceX = widthDivisor * 3;
-      const column5SourceX = widthDivisor * 4;
-      const column6SourceX = widthDivisor * 5;
-      const column7SourceX = widthDivisor * 6;
-      const column8SourceX = widthDivisor * 7;
-      const column9SourceX = widthDivisor * 8;
-      const column10SourceX = widthDivisor * 9;
-
-      const row1SourceY = 0;
-      const row2SourceY = heightDivisor;
-      const row3SourceY = heightDivisor * 2;
-
-    }
-  }
+  return '#${red}${green}${blue}';
 }
