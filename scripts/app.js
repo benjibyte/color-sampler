@@ -4,6 +4,9 @@ const preview = document.getElementById("uploaded-image-display");
 let fileSelected = false;
 let image = new Image();
 let selectedImage = "";
+let colorsArray = [];
+
+
 
 inputFile.addEventListener("change", (event) => {
   const file = event.target.files[0];
@@ -41,28 +44,17 @@ inputFile.addEventListener("change", (event) => {
         const g = imageData[index + 1];
         const b = imageData[index + 2];
 
-        // convert to HEX codes
-
-      
-
+        // convert to HEX codes, and save them to an array
+        const hexColor = rgbToHex(r, g, b);
+        colorsArray.push(hexColor);
       }
     }
-
- 
   };
   
     
   
   
-  
-  }});
-
-// The image on CanvasJS to divide | Divide button to prepare for color selection
-
-
-
-// Get the same image that is displayed to the User
-
+  }}); // end of code that is called and ran in client side browser.
 
 function securityChecks(file) {
   
