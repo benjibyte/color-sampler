@@ -187,3 +187,12 @@ downloadBtn.addEventListener("click", function (e) {
   createEL.remove();
 
 })
+
+// Reload button resets the page state
+const reloadBtn = document.getElementById('reload-page-btn');
+if (reloadBtn) {
+  reloadBtn.addEventListener('click', function () {
+    // Reload the page to reset state
+    location.reload();
+  });
+}
