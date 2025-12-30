@@ -49,11 +49,22 @@ inputFile.addEventListener("change", (event) => {
         colorsArray.push(hexColor);
       }
     }
-  };
-  
+
+    // Create the pallete image and draw the colors to it.
+    const palleteCanvas = document.createElement("canvas");
+    const ctx = palleteCanvas.getContext("2d");
     
-  
-  
+    let swatchPosition = 0;
+
+    // Time to paint the colors!
+    for (const color in colorsArray) {
+      ctx.fillStyle = color;
+      ctx.fillRect(swatchPosition, 0, 1, 1);
+      swatchPosition++;
+    }
+
+
+  }; // All code within Security Checks
   }}); // end of code that is called and ran in client side browser.
 
 function securityChecks(file) {
@@ -111,3 +122,5 @@ function rgbToHex(r, g, b) {
 
   return '#${red}${green}${blue}';
 }
+
+// Download the Canvas to image upon button click!
