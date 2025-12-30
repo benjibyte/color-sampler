@@ -28,29 +28,39 @@ inputFile.addEventListener("change", (event) => {
   conversionImage.onload = () => {
     // Reset colors array for each new upload
     colorsArray = [];
-    canvas.width = conversionImage.width;
-    canvas.height = conversionImage.height;
-    context.drawImage(conversionImage, 0, 0, conversionImage.width, conversionImage.height);
-    const imageData = context.getImageData(0, 0, conversionImage.width, conversionImage.height);
-    const imageDataRGB = imageData.data;
+    // Prefer intrinsic image size; fall back to rendered size or 1 to avoid zero dimensions
+    canvas.width = conversionImage.naturalWidth || conversionImage.width || 1;
+    canvas.height = conversionImage.naturalHeight || conversionImage.height || 1;
 
+    if (canvas.width === 0 || canvas.height === 0) {
+      console.error('Canvas has zero width/height, aborting sampling:', canvas.width, canvas.height);
+      return;
+    }
+
+    context.drawImage(conversionImage, 0, 0, canvas.width, canvas.height);
+    // Read back pixel data for the same canvas dimensions (must match canvas width/height)
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+    console.log('imageData dimensions from getImageData:', imageData.width, imageData.height, 'pixels:', data.length / 4);
     // Get the jump increments (ensure min step of 1 to avoid zero-step loops)
     const jumpX = Math.max(1, Math.floor(canvas.width / 10));
     const jumpY = Math.max(1, Math.floor(canvas.height / 3));
+
+    console.log('Conversion canvas size:', canvas.width, canvas.height, 'imageData length:', data.length, 'jumpX/jumpY:', jumpX, jumpY);
 
     for (let y = 0; y < canvas.height; y += jumpY) {
       for (let x = 0; x < canvas.width; x += jumpX) {
         const index = (y * canvas.width + x) * 4; // Jump in L's like a chess knight through this array,
                                                   // Each 4 numbers, is a new color
         // Make sure we don't read out of bounds
-        if (index + 2 >= imageData.length) {
-          console.warn('Pixel index out of bounds, skipping:', index);
+        if (index + 2 >= data.length) {
+          console.warn('Pixel index out of bounds, skipping:', index, 'data.length:', data.length);
           continue;
         }
 
-        const r = imageData[index];
-        const g = imageData[index + 1];
-        const b = imageData[index + 2];
+        const r = data[index];
+        const g = data[index + 1];
+        const b = data[index + 2];
 
         if (typeof r !== 'number' || typeof g !== 'number' || typeof b !== 'number') {
           console.warn('Invalid pixel data, skipping:', r, g, b);
@@ -94,6 +104,13 @@ inputFile.addEventListener("change", (event) => {
       swatchPosition++;
     }
 
+    // Show a small preview in the page for immediate feedback
+    const existingPreview = document.getElementById('palette-preview');
+    if (existingPreview) existingPreview.remove();
+    paletteCanvas.id = 'palette-preview';
+    paletteCanvas.style.maxWidth = '100%';
+    paletteCanvas.style.height = 'auto';
+    preview.appendChild(paletteCanvas);
 
   }; // All code within Security Checks
   }}); // end of code that is called and ran in client side browser.
